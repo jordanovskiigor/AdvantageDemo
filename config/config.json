@@ -1,0 +1,6 @@
+{
+  "base_url": "https://advantageonlineshopping.com/#/",
+  "browser": "chrome",
+  "timeout": 10,
+  "headless": false
+}
