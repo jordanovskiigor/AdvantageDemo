@@ -10,6 +10,10 @@ class RegistrationPage:
     CONFIRM_PASSWORD_INPUT = (By.NAME, "confirm_passwordRegisterPage")
     TERMS_CHECKBOX = (By.NAME, "i_agree")
     REGISTER_BUTTON = (By.ID, "register_btn")
+    USERNAME_ERROR = (By.XPATH, '//*[@id="formCover"]/div[1]/div[1]/sec-view[1]/div/label')
+    EMAIL_ERROR = (By.XPATH, '//*[@id="formCover"]/div[1]/div[1]/sec-view[2]/div/label')
+    PASSWORD_ERROR = (By.XPATH,'//*[@id="formCover"]/div[1]/div[2]/sec-view[1]/div/label')
+    REPEAT_PASSWORD_ERROR = (By.XPATH, '//*[@id="formCover"]/div[1]/div[2]/sec-view[2]/div/label' )
 
     def __init__(self, driver):
         self.driver = driver
@@ -35,3 +39,15 @@ class RegistrationPage:
     def submit_registration(self):
         self.accept_terms()
         self.driver.find_element(*self.REGISTER_BUTTON).click()
+
+    def get_field_error_text(self, field: str):
+        error_locators = {
+            "username": self.USERNAME_ERROR,
+            "email": self.EMAIL_ERROR,
+            "password": self.PASSWORD_ERROR,
+            "confirm_password": self.REPEAT_PASSWORD_ERROR,
+        }
+        try:
+            return self.driver.find_element(*error_locators[field]).text
+        except:
+            return ""
