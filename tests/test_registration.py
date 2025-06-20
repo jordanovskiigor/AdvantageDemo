@@ -84,3 +84,16 @@ def test_registration_with_invalid_password_format(browser, base_url, json_data)
     assert reg_page.get_field_error_text("password") == error_messages.PASSWORD_ERROR_FORMAT_MESSAGE
 
 
+@pytest.mark.parametrize("json_data",["registration_user.json"],indirect=True)
+def test_registration_confirm_password_dont_match(browser,base_url,json_data):
+    user = next(u for u in json_data if not u["valid"] and u["scenario"] == "Password dont match")
+
+    reg_page = perform_registration(
+        browser,
+        base_url,
+        username = user["username"],
+        email = f"{user["username"]}@test.com",
+        confirm_password=user["confirm_password"],
+        password=user["password"],
+    )
+    assert reg_page.get_field_error_text("confirm_password") == error_messages.CONFIRM_PASSWORD_FORMAT_ERROR_MESSAGE
