@@ -1,5 +1,7 @@
 from pages.registration_page import RegistrationPage
 from pages.home_page import HomePage
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 def perform_registration(browser,base_url,username,email,password,confirm_password):
     browser.get(base_url)
@@ -14,5 +16,5 @@ def perform_registration(browser,base_url,username,email,password,confirm_passwo
         password=password,
         confirm_password=confirm_password,
     )
-
+    browser.find_element(By.TAG_NAME, "body").click()
     return reg_page

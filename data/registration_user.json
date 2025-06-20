@@ -24,7 +24,7 @@
   {
     "username": "test_user",
     "password": "test1234",
-    "confirm_password": "test1234",
+    "confirm_password": "test12345",
     "valid": false,
     "scenario": "invalid password format"
   },
