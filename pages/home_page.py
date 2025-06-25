@@ -21,3 +21,7 @@ class HomePage:
     def get_logged_in_username(self):
         self.wait.until(EC.visibility_of_element_located(self.LOGGED_IN_USERNAME))
         return self.driver.find_element(*self.LOGGED_IN_USERNAME).text
+
+    def go_to_login_form(self):
+        self.driver.find_element(*self.ACCOUNT_ICON).click()
+
