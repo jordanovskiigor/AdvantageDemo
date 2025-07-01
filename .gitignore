@@ -1,0 +1,21 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Virtual environment folder
+venv/
+
+# IDE/editor folders
+.idea/
+.vscode/
+
+# Bytecode files
+*.pyc
+
+# Distribution/build folders
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
