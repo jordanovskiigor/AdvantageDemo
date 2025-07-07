@@ -1,11 +1,10 @@
-import os
-import json
 import random
 import pytest
-from utils.register_utils import perform_registration
+from utils.registration_utils.reg_utils import perform_registration
 from pages.home_page import HomePage
 from pages.registration_page import RegistrationPage
-from utils import registration_error_messages
+from utils.registration_utils import reg_error_messages
+
 
 @pytest.mark.parametrize("json_data", ["registration_user.json"], indirect=True)
 def test_valid_registration(browser, base_url,json_data):
@@ -47,7 +46,7 @@ def test_registration_with_empty_required_field(browser, base_url, json_data):
         confirm_password=user["confirm_password"],
     )
 
-    assert reg_page.get_field_error_text("username") == registration_error_messages.USERNAME_ERROR_MESSAGE
+    assert reg_page.get_field_error_text("username") == reg_error_messages.USERNAME_ERROR_MESSAGE
 
 @pytest.mark.parametrize("json_data",["registration_user.json"],indirect=True)
 def test_registration_invalid_email(browser,base_url,json_data):
@@ -62,7 +61,7 @@ def test_registration_invalid_email(browser,base_url,json_data):
         confirm_password=user["confirm_password"],
     )
 
-    assert reg_page.get_field_error_text("email") == registration_error_messages.EMAIL_ERROR_FORMAT_MESSAGE
+    assert reg_page.get_field_error_text("email") == reg_error_messages.EMAIL_ERROR_FORMAT_MESSAGE
 
 @pytest.mark.parametrize("json_data", ["registration_user.json"], indirect=True)
 def test_registration_with_invalid_password_format(browser, base_url, json_data):
@@ -77,7 +76,7 @@ def test_registration_with_invalid_password_format(browser, base_url, json_data)
         confirm_password=user["confirm_password"],
     )
 
-    assert reg_page.get_field_error_text("password") == registration_error_messages.PASSWORD_ERROR_FORMAT_MESSAGE
+    assert reg_page.get_field_error_text("password") == reg_error_messages.PASSWORD_ERROR_FORMAT_MESSAGE
 
 @pytest.mark.parametrize("json_data",["registration_user.json"],indirect=True)
 def test_registration_confirm_password_dont_match(browser,base_url,json_data):
@@ -91,4 +90,4 @@ def test_registration_confirm_password_dont_match(browser,base_url,json_data):
         confirm_password=user["confirm_password"],
         password=user["password"],
     )
-    assert reg_page.get_field_error_text("confirm_password") == registration_error_messages.CONFIRM_PASSWORD_FORMAT_ERROR_MESSAGE
+    assert reg_page.get_field_error_text("confirm_password") == reg_error_messages.CONFIRM_PASSWORD_FORMAT_ERROR_MESSAGE
