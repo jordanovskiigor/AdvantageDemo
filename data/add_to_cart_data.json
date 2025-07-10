@@ -1,0 +1,10 @@
+[
+  {
+    "username": "test_user",
+    "password": "Test1234",
+    "category": "SPEAKERS",
+    "product_name": "Bose Soundlink Bluetooth Speaker",
+    "scenario": "valid add to cart after login",
+    "expected_in_cart": true
+  }
+]

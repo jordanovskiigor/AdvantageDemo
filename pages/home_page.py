@@ -25,3 +25,6 @@ class HomePage:
     def go_to_login_form(self):
         self.driver.find_element(*self.ACCOUNT_ICON).click()
 
+    def category_navigation(self,category_name):
+        category_locator = (By.LINK_TEXT, category_name)
+        self.wait.until(EC.element_to_be_clickable(category_locator)).click()
